@@ -80,9 +80,21 @@ systemctl start clamd
 ```
 
 ### Test
-From the same machine :
+Check that the service runs properly :
+```
+journalctl -xe
+```
+
+Make sure ClamAV listens on the proper port :
+```
+netstat -ntpl
+```
+
+
+From the same machine, ping the service :
 ```
 echo PING | nc -U /var/run/clamd.service/clamd.sock
+echo PING | nc 127.0.0.1 3310
 ```
 
 From a distant machine :
