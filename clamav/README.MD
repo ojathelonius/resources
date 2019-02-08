@@ -6,6 +6,7 @@ ClamAV is an open source antivirus engine for detecting trojans, viruses, malwar
 * [Configuration](#configuration)
 * [Run as a service](#run-as-a-service)
 * [Test](#test)
+* [Logging](#logging)
 
 ### Download & installation
 The information below is only valid for CentOS.
@@ -101,3 +102,15 @@ From a distant machine :
 ```
 echo PING | nc clamav.address port
 ```
+
+### Logging
+By default, ClamAV has minimal logging features turned on. In particular, it does not log clean file scans.
+Make it more verbose with the following :
+
+```
+LogClean yes
+LogVerbose yes
+LogTime yes
+
+```
+
