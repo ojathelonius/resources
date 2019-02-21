@@ -2,6 +2,7 @@
 Maven is a build automation tool used for Java projects
 
 * [Build](#build)
+* [Export dependencies](#export-dependencies)
 
 ### Build 
 Normal build :
@@ -43,4 +44,16 @@ mvn javadoc:javadoc
 
 ```
 mvn source:jar
+```
+
+### Export dependencies
+
+#### To a list
+```bash
+mvn dependency:list
+```
+#### To CSV
+The following command has only been tested on Windows.
+```bash
+mvn -o dependency:list | grep ":.*:.*:compile" | sed "s/\[INFO\]    \([^:]*\):\([^:]*\):jar:\([^:]*\):compile/\1;\2;\3/" | sort -u
 ```
