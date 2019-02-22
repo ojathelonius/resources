@@ -39,7 +39,7 @@ import { history } from 'backbone';
 const navigate = history.__proto__.navigate;
 
 history.navigate = (fragment, params) => {
-  if(history.preventNavigation === true) {
+  if(history.canNavigate === false) {
      history.trigger('prevented');
   } else {
      navigate.call(history, fragment, params);
@@ -47,7 +47,7 @@ history.navigate = (fragment, params) => {
 }
 
 history.preventNavigation = (bool) => {
-  history.preventNavigation = bool;
+  history.canNavigate = !bool;
 }
 
 export default history;
