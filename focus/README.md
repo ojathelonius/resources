@@ -2,6 +2,7 @@
 Focus is a front-end framework developed by Klee Group, designed to make management software easier to implement thanks to React. 
 
 * [Call actions in bulk on a page](#call-actions-in-bulk-on-a-page)
+* [Conditional navigation with Backbone](#conditional-navigation-with-backbone)
 
 ### Call actions in bulk on a page
 React makes `this.refs` available to the parent component. Hence it is possible to do the following :
