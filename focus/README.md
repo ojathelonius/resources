@@ -41,6 +41,8 @@ const navigate = history.__proto__.navigate;
 history.navigate = (fragment, params) => {
   if(history.canNavigate === false) {
      history.trigger('prevented');
+     // Save navigation attempt for future use
+     history.previousNavigation = [fragment, params];
   } else {
      navigate.call(history, fragment, params);
   }
@@ -48,6 +50,14 @@ history.navigate = (fragment, params) => {
 
 history.preventNavigation = (bool) => {
   history.canNavigate = !bool;
+}
+
+history.finallyNavigate = () => {
+  if(history.previousNavigation) {
+     // Allow navigation
+     history.preventNavigation(false);
+     history.navigate(...history.previousNavigation);
+  }
 }
 
 export default history;
@@ -65,8 +75,18 @@ componentDidMount() {
 },
 
 onNavigationPrevented() {
-  this.popin('Do you really want to leave the page ? All entered data will be lost.');
+  /* Example of pop-in with Yes/No handlers*/
+  this.popin('Do you really want to leave the page ? All entered data will be lost.', noHandler, yesHandler);
 },
+
+noHandler() {
+  // Just stay on page
+},
+
+yesHandler() {
+  // Navigate to previous route
+  history.finallyNavigate();
+}
 ```
 
 
