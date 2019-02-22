@@ -63,19 +63,26 @@ history.finallyNavigate = () => {
 export default history;
 ```
 
-It can then be used in any component that imports `history`, e.g. in `componentDidMount()` :
+It can then be used in any component that imports `history` :
 ```javascript
 
 import history from '../navigation/overriden-history';
 
 componentDidMount() {
-  /* Check if user has entered some data */
-  history.preventNavigation(this.state.hasUserEnteredData);
   history.on('prevented', this.onNavigationPrevented.bind(this));
 },
 
+render() {
+  // Check if user has entered some data, cannot be called in componentDidMount if using component state
+  history.preventNavigation(this.state.hasUserEnteredData);
+  
+  return (
+  ...
+  );
+}
+
 onNavigationPrevented() {
-  /* Example of pop-in with Yes/No handlers*/
+  // Example of pop-in with Yes/No handlers
   this.popin('Do you really want to leave the page ? All entered data will be lost.', noHandler, yesHandler);
 },
 
