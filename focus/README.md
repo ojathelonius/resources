@@ -7,7 +7,7 @@ Focus is a front-end framework developed by Klee Group, designed to make managem
 ### Call actions in bulk on a page
 React makes `this.refs` available to the parent component. Hence it is possible to do the following :
 
-#### Example code
+#### Simple example
 
 ```JSX
 <Parent>
@@ -27,6 +27,42 @@ function onSave() {
   })
 }
 ```
+
+#### Complex example : call one action, and if they all succeed, call another
+A typical use case would be to save all sub-forms, then submit another form. For this purpose, we need to know when all children forms are done saving.
+
+The formMixin `afterChange()` function is called when the form store changes. However this function is at child component level, hence it needs to be conveniently set on the fly :
+
+```javascript
+saveAndDoSomething() {
+  // Count the number of elements that are actually saved
+  this.saveCount = 0;
+  // Count the number of elements that have to be saved
+  this.maxCount = Object.values(this.refs).filter(ref => ref.action && ref.action.save).length - 1;
+
+  Object.values(this.refs).forEach((ref) => {
+    if (ref.action && ref.action.save) {
+
+      // Set afterChange() handler
+      ref.afterChange = (response) => {
+        // Check that the save request succeeded and increment the counter
+        if (response.status.name === 'saved') {
+          this.saveCount++;
+        }
+      }
+
+      ref.action.save.call(ref, ref._getEntity()).then(() => {
+        if (this.saveCount == this.maxCount) {
+          // SUCCESS : all elements are saved, carry on with doSomething();
+        } else {
+          // FAILURE : at least one element has not saved, and it should handle its own behaviour
+        }
+      });
+    }
+  })
+}
+```
+
 
 ### Conditional navigation with Backbone
 There are several usecases to controlling the navigation, but a common one is to prevent users from leaving the page if data has been entered so that they cannot lose it accidentally.
