@@ -87,3 +87,9 @@ It should be automatically found when importing the dependency through `pom.xml`
    ...
 </dependency>
 ```
+
+**Note**: there is an [Eclipse bug](https://bugs.eclipse.org/bugs/show_bug.cgi?id=502349) that prevents it from finding updated packaged dependencies such as above. Instead, run :
+
+```bash
+mvn clean install -U
+```
