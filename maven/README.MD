@@ -78,4 +78,12 @@ Sometimes, a web application can also be used as a library for other apps. In th
 
 This will build a `projectname-classes.jar` package that contains all the classes.
 
-It should be automatically found when importing the dependency through `pom.xml`.
+It should be automatically found when importing the dependency through `pom.xml`, using the following dependency configuration :
+
+```xml
+<dependency>
+   ...
+   <classifier>classes</classifier>
+   ...
+</dependency>
+```
