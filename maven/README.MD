@@ -4,6 +4,7 @@ Maven is a build automation tool used for Java projects
 * [Various ways to build](#various-ways-to-build)
 * [Export dependencies](#export-dependencies)
 * [Import a WAR as  JAR](#import-a-war-as-a-jar)
+* [Extract resources from a JAR](#extract-resources-from-a-jar)
 
 ### Various ways to build 
 Normal build :
@@ -92,4 +93,67 @@ It should be automatically found when importing the dependency through `pom.xml`
 
 ```bash
 mvn clean install -U
+```
+
+### Extract resources from a JAR
+
+This can be useful to include default config files in a WAR, from a given JAR.
+
+For this purpose we can use the [Jetspeed unpack plugin](https://portals.apache.org/jetspeed-2/buildguide/jetspeed-unpack-plugin.html).
+
+```xml
+<plugin>
+	<groupId>org.apache.portals.jetspeed-2</groupId>
+	<artifactId>jetspeed-unpack-maven-plugin</artifactId>
+	<executions>
+		<execution>
+			<id>unpack-jetspeed-properties</id>
+			<goals>
+				<goal>unpack</goal>
+			</goals>
+			<phase>generate-resources</phase>
+			<configuration>
+				<unpack>
+					<artifact>myartifact:jar</artifact>
+					<targetDirectory>${project.build.directory}</targetDirectory>
+					<resources combine.children="append">
+						<resource>
+							<path>path/to/classes</path>
+							<destination>/files</destination>
+							<flat>true</flat>
+							<include>**/*.xml</include>
+						</resource>
+					</resources>
+				</unpack>
+			</configuration>
+		</execution>
+	</executions>
+	<dependencies>
+		<dependency>
+			<groupId>my.groupid</groupId>
+			<artifactId>myartifact</artifactId>
+			<version>0.0.0</version>
+		</dependency>
+	</dependencies>
+</plugin>
+```
+
+Files can then be copied into different folders by including them in the build : 
+
+```xml
+<build>
+   <resources>
+      <filtering>true</filtering>
+         <directory>${project.build.directory}/files</directory>
+         <includes>
+            <include>**/*.xml</include>
+         </includes>
+   </resources>
+</build>
+```
+
+Remaining, unused files can be deleted from the WAR using :
+
+```xml
+<packagingExcludes>unused.xml</packagingExcludes>
 ```
