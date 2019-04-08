@@ -3,6 +3,7 @@ PostgreSQL, often simply Postgres, is an open source object-relational database 
 
 * [Basic commands](#basic-commands)
 * [Kill all existing connections](#kill-existing-connections)
+* [Trust local connections]("#trust-local-connections)
 
 ### Basic commands
 #### Connect to a server
@@ -37,3 +38,8 @@ WHERE
     pid <> pg_backend_pid()
     AND datname = 'database_name';
 ```
+
+### Trust local connections
+Local connections can be trusted in a secure environment - disabling credentials in this case can also allow resetting postgres password. For this purpose, modify `pg_hba.conf` in :
+* Windows : `C:\Program Files\PostgreSQL\9.X\data\`
+* Linux (usually) : `/etc/postgresql/9.X/main/`
