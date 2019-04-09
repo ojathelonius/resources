@@ -3,7 +3,8 @@ PostgreSQL, often simply Postgres, is an open source object-relational database 
 
 * [Basic commands](#basic-commands)
 * [Kill all existing connections](#kill-existing-connections)
-* [Trust local connections]("#trust-local-connections)
+* [Trust local connections](#trust-local-connections)
+* [Find data storage location]'#find-data-storage-location)
 
 ### Basic commands
 #### Connect to a server
@@ -43,3 +44,10 @@ WHERE
 Local connections can be trusted in a secure environment - disabling credentials in this case can also allow resetting postgres password. For this purpose, modify `pg_hba.conf` in :
 * Windows : `C:\Program Files\PostgreSQL\9.X\data\`
 * Linux (usually) : `/etc/postgresql/9.X/main/`
+
+### Find data storage location
+As data location varies from a distribution to another, it can be queried through psql :
+
+```sql
+SELECT s.name, s.setting FROM pg_settings WHERE s.name='data_directory';
+```
