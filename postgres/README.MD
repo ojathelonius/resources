@@ -4,7 +4,7 @@ PostgreSQL, often simply Postgres, is an open source object-relational database 
 * [Basic commands](#basic-commands)
 * [Kill all existing connections](#kill-existing-connections)
 * [Trust local connections](#trust-local-connections)
-* [Find data storage location]'#find-data-storage-location)
+* [Find data storage location](#find-data-storage-location)
 
 ### Basic commands
 #### Connect to a server
