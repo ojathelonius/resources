@@ -18,11 +18,18 @@ psql -h localhost -p 5432 -U postgres --list
 
 \list
 ```
+#### List all users
+```bash
+\du
+```
+#### Give user SUPERUSER
+```sql
+ALTER USER user WITH SUPERUSER;
+```
 #### Get given database
 ```bash
 psql -h localhost -p 5432 -U postgres --list | grep given_database
 ```
-
 #### Quit PSQL CLI
 ```bash
 \q
