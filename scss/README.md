@@ -2,6 +2,7 @@
 This file holds a collection of CSS/SCSS resources.
 
 * [Box-shadow collection](#box-shadow-collection)
+* [Diagonal gradient border](#diagonal-gradient-border)
 
 **Troubleshoot**
 
@@ -22,6 +23,19 @@ box-shadow: 0 10px 40px 0 rgba(62, 57, 107, 0.2), 0 2px 9px 0 rgba(62, 57, 107, 
 The shadow below adds depth to a plain, unicolored page.
 ```css
 box-shadow: inset 0px 0px 500px #0000006e;
+```
+
+### Diagonal gradient border
+Panic used a cool CSS trick for their [latest article](https://panic.com/next/), which involves `skew`-ing a block of text along with a gradient border. It works as shown below :
+
+```scss
+.diagonal-block-with-border {
+  border-left-width: 0.4rem;
+  border-left-style: solid;
+  border-image: linear-gradient(to bottom, rgba(0,216,5,1), #2996bf, #ad51a3) 1 100%;
+  padding-left: 3rem;
+  transform: skew(-1deg);
+}
 ```
 
 ### Browser CSS overrides stylesheet
