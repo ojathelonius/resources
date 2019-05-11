@@ -5,6 +5,7 @@ PostgreSQL, often simply Postgres, is an open source object-relational database 
 * [Kill all existing connections](#kill-existing-connections)
 * [Trust local connections](#trust-local-connections)
 * [Find data storage location](#find-data-storage-location)
+* [PostGIS : getting started](#postgis-getting-started)
 
 ### Basic commands
 #### Connect to a server
@@ -58,3 +59,35 @@ As data location varies from a distribution to another, it can be queried throug
 ```sql
 SELECT s.name, s.setting FROM pg_settings WHERE s.name='data_directory';
 ```
+### PostGIS : getting started
+
+#### Installation
+On Windows, PostGIS can be installed through the **Application StackBuilder** that comes with Postgres.
+
+On CentOS 7, run the following :
+```shell
+yum -y install epel-release
+sudo rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum install postgis2_94 postgis2_94-client
+```
+
+#### Database configuration
+Add the PostGIS plugin to the database :
+```sql
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+```
+
+#### Data processing
+
+First add a geometry column :
+```sql
+ALTER TABLE feature ADD COLUMN geom geometry;
+COMMENT ON COLUMN feature.geom IS 'Geometry';
+```
+Then process its data using PostGIS functions (e.g. below with a single point feature) :
+```sql
+UPDATE feature feat SET geom = ST_Point(feat.lon, feat.lat);
+```
+
+The result is then best viewed using [QGIS](https://www.qgis.org/) or [Geoserver](http://geoserver.org/).
