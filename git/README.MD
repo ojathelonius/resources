@@ -4,6 +4,7 @@ Git is a distributed version-control system for tracking changes in source code 
 * [Move files to a subdirectory](#moves-files-to-a-subdirectory)
 * [Delete local commits](#delete-local-commits)
 * [Oh shit, git](#oh-shit-git)
+* [Assume files untracked](#assume-files-untracked)
 
 ### Move files to a subdirectory
 Use git commands to move files around so that it properly keeps track of their history :
@@ -36,3 +37,13 @@ git reset --hard HEAD~X
 List of useful git commands to fix common mistakes :
 
 https://ohshitgit.com/
+
+### Assume files untracked
+
+Configuration file changes might not have to be included in the remote repo, while they can still be modified locally AND have a default version in the remote repository. Ignoring the file alone **does not work** since it's already tracked by git.
+
+For this purpose, add the config file to `gitignore` and use :
+
+```bash
+git update-index --assume-unchanged config.ini
+```
