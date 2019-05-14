@@ -3,6 +3,7 @@ Git is a distributed version-control system for tracking changes in source code 
 
 * [Move files to a subdirectory](#moves-files-to-a-subdirectory)
 * [Delete local commits](#delete-local-commits)
+* [Oh shit, git](#oh-shit-git)
 
 ### Move files to a subdirectory
 Use git commands to move files around so that it properly keeps track of their history :
@@ -31,3 +32,7 @@ git reset --hard HEAD^
 git reset --hard HEAD~X
 ```
 
+### Oh shit, git
+List of useful git commands to fix common mistakes :
+
+https://ohshitgit.com/
