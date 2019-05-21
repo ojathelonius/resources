@@ -3,6 +3,7 @@ This file holds a collection of CSS/SCSS resources.
 
 * [Box-shadow collection](#box-shadow-collection)
 * [Diagonal gradient border](#diagonal-gradient-border)
+* [Cheap dark mode](#cheap-dark-mode)
 
 **Troubleshoot**
 
@@ -45,6 +46,14 @@ There seems to a be a bug with `div` embedded into `ul` tags, causing browser st
 The fix is to specifically target the div using : 
 ```css
 ul div.ignored-style
+```
+
+### Cheap dark mode
+
+Apply the following to `body` :
+
+```scss
+filter: invert(95%) hue-rotate(190deg);
 ```
 
 
