@@ -1,6 +1,7 @@
 ## Linux
 
 * [Run script as a service](#run-script-as-a-service)
+* [Show size in mb](#show-size-in-mb)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -48,4 +49,9 @@ systemctl daemon-reload
 To enable the service, use :
 ```
 systemctl enable geoserver.service
+```
+
+### Show size in MB
+```bash
+ls -l --block-size=M
 ```
