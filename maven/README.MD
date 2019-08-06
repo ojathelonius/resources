@@ -5,6 +5,7 @@ Maven is a build automation tool used for Java projects
 * [Export dependencies](#export-dependencies)
 * [Import a WAR as  JAR](#import-a-war-as-a-jar)
 * [Extract resources from a JAR](#extract-resources-from-a-jar)
+* [Define source directory](#define-source-directory)
 
 ### Various ways to build 
 Normal build :
@@ -156,4 +157,37 @@ Remaining, unused files can be deleted from the WAR using :
 
 ```xml
 <packagingExcludes>unused.xml</packagingExcludes>
+```
+
+### Define source directory
+
+If you have a single source directory, use :
+
+```xml
+<build>
+    <sourceDirectory>../src/main/java</sourceDirectory>
+</build>
+```
+
+If you have several, use `build-helper-maven-plugin` :
+
+```xml
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>build-helper-maven-plugin</artifactId>
+	<executions>
+		<execution>
+			<id>add-source</id>
+			<phase>generate-sources</phase>
+			<goals>
+				<goal>add-source</goal>
+			</goals>
+			<configuration>
+				<sources>
+					<source>${basedir}/src/main/gen/</source>
+				</sources>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
 ```
