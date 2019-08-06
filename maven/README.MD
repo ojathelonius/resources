@@ -6,6 +6,7 @@ Maven is a build automation tool used for Java projects
 * [Import a WAR as  JAR](#import-a-war-as-a-jar)
 * [Extract resources from a JAR](#extract-resources-from-a-jar)
 * [Define source directory](#define-source-directory)
+* [Include dependencies in JAR](#include-dependencies-in-jar)
 
 ### Various ways to build 
 Normal build :
@@ -186,6 +187,36 @@ If you have several, use `build-helper-maven-plugin` :
 				<sources>
 					<source>${basedir}/src/main/gen/</source>
 				</sources>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+```
+
+### Include dependencies in JAR
+
+```xml
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-assembly-plugin</artifactId>
+	<version>2.6</version>
+	<executions>
+		<execution>
+			<phase>package</phase>
+			<goals>
+				<goal>single</goal>
+			</goals>
+			<configuration>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+						<classpathPrefix>lib/</classpathPrefix>
+						<mainClass>com.my.class.Class</mainClass>
+					</manifest>
+				</archive>
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
 			</configuration>
 		</execution>
 	</executions>
