@@ -5,6 +5,7 @@ Git is a distributed version-control system for tracking changes in source code 
 * [Delete local commits](#delete-local-commits)
 * [Oh shit, git](#oh-shit-git)
 * [Assume files untracked](#assume-files-untracked)
+* [Clean local repository](#clean-local-repository)
 
 ### Move files to a subdirectory
 Use git commands to move files around so that it properly keeps track of their history :
@@ -46,4 +47,24 @@ For this purpose, add the config file to `gitignore` and use :
 
 ```bash
 git update-index --assume-unchanged config.ini
+```
+
+### Clean local repository
+
+Update the local repo with :
+
+```bash
+git fetch --all
+```
+
+Remove local **branches** that do not exist anymore on the remote repo :
+
+```bash
+git remote prune origin && git checkout develop && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
+```
+
+Remove local **tags** that do not exist anymore on the remote repo :
+
+```bash
+git fetch --prune origin "+refs/tags/*:refs/tags/*"
 ```
