@@ -2,6 +2,7 @@
 
 * [Run script as a service](#run-script-as-a-service)
 * [Show size in mb](#show-size-in-mb)
+* [Kill zombie processes](#kill-zombie-processes)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -54,4 +55,15 @@ systemctl enable geoserver.service
 ### Show size in MB
 ```bash
 ls -l --block-size=M
+```
+
+### Kill zombie processes
+
+```bash
+kill -9
+```
+
+Sometimes you might want to kill the parent process as killing its children does not help : find its pid with the following : 
+```bash
+ps -xal
 ```
