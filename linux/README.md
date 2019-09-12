@@ -3,6 +3,7 @@
 * [Run script as a service](#run-script-as-a-service)
 * [Show size in mb](#show-size-in-mb)
 * [Kill zombie processes](#kill-zombie-processes)
+* [Find text in files](#find-text-in-files)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -67,3 +68,11 @@ Sometimes you might want to kill the parent process as killing its children does
 ```bash
 ps -xal
 ```
+
+### Find text in files
+
+```bash
+grep -rn 'path/to/file' -e 'searched_text'
+```
+
+Use `-rnw` instead to match the whole word.
