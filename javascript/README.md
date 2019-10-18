@@ -39,7 +39,6 @@ this.myCallback = function() {
 function onEvent(event) {
   this.myCallback();
 }
-```
 window.addEventListener('message', () => onEvent.bind(this));
 ```
 
