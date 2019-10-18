@@ -2,6 +2,7 @@
 
 * [Transform any label into valid CSS classes](#transform-any-label-into-valid-css-classes)
 * [Add non-anonymous event handler with callback](#add-non-anonymous-event-handler-with-callback)
+* [Bind a `this` context to a function](#bind-a-this-context-to-a-function)
 
 ### Transform any string into valid CSS classes
 
@@ -43,3 +44,11 @@ window.addEventListener('message', () => onEvent.bind(this));
 
 Simply make sure that the callback is part of the context that is bounded to the event handler.
 
+### Bind a `this` context to a function
+
+```
+function myFunction(params) {
+  // do something
+}
+
+myFunction.bind(this)(params);
