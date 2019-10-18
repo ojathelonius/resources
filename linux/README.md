@@ -4,6 +4,7 @@
 * [Show size in mb](#show-size-in-mb)
 * [Kill zombie processes](#kill-zombie-processes)
 * [Find text in files](#find-text-in-files)
+* [Ping port](#ping-port)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -76,3 +77,14 @@ grep -rn 'path/to/file' -e 'searched_text'
 ```
 
 Use `-rnw` instead to match the whole word.
+
+### Ping port
+
+```bash
+nc -vz 192.168.1.41 5432
+```
+
+Also, on Windows : 
+```bash
+telnet 192.168.1.41 5432
+```
