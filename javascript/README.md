@@ -39,6 +39,7 @@ this.myCallback = function() {
 function onEvent(event) {
   this.myCallback();
 }
+```
 window.addEventListener('message', () => onEvent.bind(this));
 ```
 
@@ -46,9 +47,10 @@ Simply make sure that the callback is part of the context that is bounded to the
 
 ### Bind a `this` context to a function
 
-```
+```javascript
 function myFunction(params) {
   // do something
 }
 
 myFunction.bind(this)(params);
+```
