@@ -5,6 +5,7 @@
 * [Kill zombie processes](#kill-zombie-processes)
 * [Find text in files](#find-text-in-files)
 * [Ping port](#ping-port)
+* [Load and restore iptables](#load-and-restore-iptables)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -87,4 +88,14 @@ nc -vz 192.168.1.41 5432
 Also, on Windows : 
 ```bash
 telnet 192.168.1.41 5432
+```
+
+### Load and restore iptables
+
+```bash
+iptables-save > etc/sysconfig/iptables-backup
+```
+
+```bash
+iptables-restore > etc/sysconfig/iptables-backup
 ```
