@@ -1,7 +1,7 @@
 ## Linux
 
 * [Run script as a service](#run-script-as-a-service)
-* [Show size in mb](#show-size-in-mb)
+* [Find large folders](#find-large-folders)
 * [Kill zombie processes](#kill-zombie-processes)
 * [Find text in files](#find-text-in-files)
 * [Ping port](#ping-port)
@@ -55,9 +55,16 @@ To enable the service, use :
 systemctl enable geoserver.service
 ```
 
-### Show size in MB
+### Find large folders
+
+Show filesizes in MB :
 ```bash
-ls -l --block-size=M
+ls -l --block-size=MB
+```
+
+Show folder sizes in MB, sorted by size :
+```bash
+du -lh --max-depth=1|sort -rh
 ```
 
 ### Kill zombie processes
