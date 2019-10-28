@@ -1,6 +1,7 @@
 ## Apache
 
 * [Subdomain with VirtualHost](#subdomain-with-virtualhost)
+* [Hide a subfolder](#hide-a-subfolder)
 
 **Troubleshoot**
 * [Nexus as a npm registry proxy returns 404](#nexus-as-a-npm-registry-proxy-returns-404)
@@ -40,6 +41,20 @@
     RewriteCond %{SERVER_NAME} = sub.domain.fr
     RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
+```
+
+### Hide a subfolder
+
+Typical usecase : going from `subfolder/myapp` to `/myapp`.
+
+Set a `.htaccess` in `/subfolder` (e.g. `/var/www/subfolder/.htaccess`) with the following : 
+```
+<IfModule mod_rewrite.c>
+        Options +FollowSymLinks
+        RewriteEngine On
+        RewriteCond %{REQUEST_URI} !(.*)subfolder
+        RewriteRule ^(.*)$ subfolder/$1 [L]
+</IfModule>
 ```
 
 ### Nexus as a npm registry proxy returns 404
