@@ -6,6 +6,7 @@ Git is a distributed version-control system for tracking changes in source code 
 * [Oh shit, git](#oh-shit-git)
 * [Assume files untracked](#assume-files-untracked)
 * [Clean local repository](#clean-local-repository)
+* [Verify unpushed commits](#verify-unpushed-commits)
 
 ### Move files to a subdirectory
 Use git commands to move files around so that it properly keeps track of their history :
@@ -67,4 +68,11 @@ Remove local **tags** that do not exist anymore on the remote repo :
 
 ```bash
 git fetch --prune origin "+refs/tags/*:refs/tags/*"
+```
+
+### Verify unpushed commits
+
+The following command will list all commits ahead of the remote branch.
+```
+git log @{push}..
 ```
