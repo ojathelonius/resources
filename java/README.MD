@@ -1,6 +1,7 @@
 ## Java
 
 * [Read resources from a static context](#read-resources-from-a-static-context)
+* [Insert Java variables in a template string](#insert-java-variables-in-a-template-string)
 
 ### Read resources from a static context
 
@@ -20,4 +21,14 @@ However this worked :
 InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("my_resource.properties")
 ```
 
+### Insert Java variables in a template string
+
+Say you want to insert some variables in a template string. You can write an inline template, e.g. :
+```java
+private String myFinalStr = "let myElement = document.getElementById(" + myId + ")";
+```
+
+It might work for short templates, but gets unmaintainable for longer strings. Instead use [StringSubstitutor](https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/StringSubstitutor.html):
+
+Create a `myTemplate.js` file in `src/main/resources` and import it per the previous paragraph, then replace the variables with proper values with `sub.replace(templateString)`.
 
