@@ -6,6 +6,7 @@
 * [Find text in files](#find-text-in-files)
 * [Ping port](#ping-port)
 * [Load and restore iptables](#load-and-restore-iptables)
+* [Allow Chrome sandboxing mode](#allow-chrome-sandboxing-mode)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -105,4 +106,19 @@ iptables-save > etc/sysconfig/iptables-backup
 
 ```bash
 iptables-restore > etc/sysconfig/iptables-backup
+```
+
+### Allow Chrome sandboxing mode
+
+Chrome sandboxing mode is required in order to run puppeteer on Linux.
+
+On Debian, use (as per the [troubleshoot](https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#recommended-enable-user-namespace-cloning)) :
+
+```
+sudo sysctl -w kernel.unprivileged_userns_clone=1
+```
+
+**On CentOS**, use :
+```
+echo 10000 > /proc/sys/user/max_user_namespaces
 ```
