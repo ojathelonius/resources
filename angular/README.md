@@ -1,6 +1,7 @@
 ## Angular
 
 * [Serving with Apache](#serving-with-apache)
+* [Share form controls across components](#share-form-controls-across-components)
 
 ### Serving with Apache
 
@@ -36,3 +37,11 @@ Create an .htaccess file in `/var/www/my-app` with the following content :
 </IfModule>
 
 ```
+
+### Share form controls across components
+
+Add the following in every child component that has `input` controls that have to be included in the parent component `ngForm`.
+
+```
+viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+````
