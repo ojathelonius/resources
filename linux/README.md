@@ -7,6 +7,7 @@
 * [Ping port](#ping-port)
 * [Load and restore iptables](#load-and-restore-iptables)
 * [Allow Chrome sandboxing mode](#allow-chrome-sandboxing-mode)
+* [Find process location listening to port](#find-process-location-listening-to-port)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -121,4 +122,11 @@ sudo sysctl -w kernel.unprivileged_userns_clone=1
 **On CentOS**, use :
 ```
 echo 10000 > /proc/sys/user/max_user_namespaces
+```
+
+### Find process location listening to port
+
+```bash
+netstat -tupln
+ls -l /proc/YOUR_PID/exe
 ```
