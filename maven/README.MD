@@ -7,6 +7,7 @@ Maven is a build automation tool used for Java projects
 * [Extract resources from a JAR](#extract-resources-from-a-jar)
 * [Define source directory](#define-source-directory)
 * [Include dependencies in JAR](#include-dependencies-in-jar)
+* [Hotfix and release with jgitflow without pushing](#hotfix-and-release-with-jgitflow-without-pushing)
 
 ### Various ways to build 
 Normal build :
@@ -222,3 +223,25 @@ If you have several, use `build-helper-maven-plugin` :
 	</executions>
 </plugin>
 ```
+
+### Hotfix and release with jgitflow without pushing
+
+By default, jgitflow pushes all branches and tags and can lead to half-assed releases due to build or merge errors. Prevent this with :
+
+#### Hotfix
+
+```bash
+mvn jgitflow:hotfix-start -Djgitflow.allowSnapshots=false -DlocalOnly=true -DpushHotfixes=false -Djgitflow.pushHotfixes=false -DnoHotfixBuild=true -DnoReleaseMerge=false -DnoHotfixMerge=false
+
+mvn jgitflow:hotfix-finish -Djgitflow.allowSnapshots=false -Dmaven.test.skip=true -DnoDeploy=false -DpushHotfixes=false -Djgitflow.pushHotfixes=false -Djgitflow.localOnly=true -DlocalOnly=true -DnoHotfixBuild=true -DnoHotfixMerge=false
+```
+
+
+#### Release
+
+```bash
+mvn jgitflow:release-start -Djgitflow.allowSnapshots=true -DlocalOnly=true -DpushReleases=false -Djgitflow.pushReleases=false
+
+mvn jgitflow:release-finish -Djgitflow.allowSnapshots=true -Dmaven.test.skip=true -DnoDeploy=false -DpushReleases=false -Djgitflow.pushReleases=false -Djgitflow.localOnly=true -DlocalOnly=true -DnoReleaseBuild=true
+```
+
