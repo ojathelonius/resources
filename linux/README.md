@@ -8,6 +8,7 @@
 * [Load and restore iptables](#load-and-restore-iptables)
 * [Allow Chrome sandboxing mode](#allow-chrome-sandboxing-mode)
 * [Find process location listening to port](#find-process-location-listening-to-port)
+* [Troubleshoot SSH](#troubleshoot-ssh)
 
 ### Run script as a service
 The following has only been tested on CentOS.
@@ -129,4 +130,21 @@ echo 10000 > /proc/sys/user/max_user_namespaces
 ```bash
 netstat -tupln
 ls -l /proc/YOUR_PID/exe
+```
+
+### Troubleshoot SSH
+
+In case of SSH issues (running `mvn jgitflow` for instance, make sure that `./ssh/config` contains the following :
+
+```
+Host *
+StrictHostKeyChecking no
+IdentityFile ~/.ssh/id_rsa
+```
+
+Also check permissions on `.ssh` :
+
+```
+chmod 600 ~/.ssh/* 
+chmod 644 ~/.ssh/config
 ```
