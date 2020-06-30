@@ -2,6 +2,7 @@
 The Java Secure Socket Extension provides a set of packages that enable secure Internet communications.
 
 * [Common keytool commands](#common-keytool-commands)
+* [Import a certificate to Java](#import-a-certificate-into-java)
 
 ### Common keytool commands
 
@@ -34,3 +35,14 @@ Delete trusted certificate :
  ```
 keytool -delete -alias my_cert -keystore my_keystore
  ```
+
+### Import a certificate into Java
+Java's default truststore is in `C:\Program Files\Java\jdk1.8.0_211\jre\lib\security\cacerts`.
+
+
+On Windows, add an `example.cer` using :
+```
+keytool -importcert -keystore "C:\Program Files\Java\jdk1.8.0_211\jre\lib\security\cacerts" -file "C:\Users\Documents\example.cer"
+```
+
+Note : the truststore default password is `changeit`.
