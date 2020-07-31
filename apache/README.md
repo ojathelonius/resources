@@ -5,6 +5,7 @@
 
 **Troubleshoot**
 * [Nexus as a npm registry proxy returns 404](#nexus-as-a-npm-registry-proxy-returns-404)
+* [Failed connection to backend](#failed-connection-to-backend)
 
 ### Subdomain with VirtualHost
 
@@ -70,6 +71,19 @@ This can either be due to a [bug in Nexus < 3.5](https://issues.sonatype.org/bro
 
 ```
 AllowEncodedSlashes On
+```
+
+
+### Failed connection to back-end
+
+On CentOS, SELinux prevents Apache from making HTTP requests by default, and the following error appears :
+
+`AH01114: HTTP: failed to make connection to backend: localhost`
+
+Fix it with :
+
+```
+/usr/sbin/setsebool -P httpd_can_network_connect 1
 ```
 
 
