@@ -5,7 +5,7 @@
 
 **Troubleshoot**
 * [Nexus as a npm registry proxy returns 404](#nexus-as-a-npm-registry-proxy-returns-404)
-* [Failed connection to backend](#failed-connection-to-backend)
+* [Failed connection to backend](#failed-connection-to-back-end)
 
 ### Subdomain with VirtualHost
 
