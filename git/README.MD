@@ -7,6 +7,7 @@ Git is a distributed version-control system for tracking changes in source code 
 * [Assume files untracked](#assume-files-untracked)
 * [Clean local repository](#clean-local-repository)
 * [Verify unpushed commits](#verify-unpushed-commits)
+* [Delete older commit](#delete-older-commit)
 
 ### Move files to a subdirectory
 Use git commands to move files around so that it properly keeps track of their history :
@@ -76,3 +77,11 @@ The following command will list all commits ahead of the remote branch.
 ```
 git log @{push}..
 ```
+
+### Delete older commit
+
+```
+git rebase -p --onto COMMIT_SHA^ COMMIT_SHA
+```
+
+Force pushing could be required if already pushed.
