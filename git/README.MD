@@ -90,10 +90,10 @@ Force pushing could be required if already pushed.
 ### jgitflow relase without pushing
 
 ```
-mvn jgitflow:release-start -DpushReleases=false
+mvn jgitflow:release-start -Djgitflow.allowSnapshots=false -DreleaseVersion=X.X.X -DdevelopmentVersion=X.X.X-SNAPSHOT -DlocalOnly=true -DpushReleases=false -Djgitflow.pushReleases=false -DnoReleaseMerge=true
 ```
 
 ```
-mvn jgitflow:release-finish -DpushReleases=false -DnoDeploy=true
+mvn jgitflow:release-finish -Djgitflow.allowSnapshots=false -Dmaven.test.skip=true -DnoDeploy=true -DpushReleases=false -Djgitflow.pushReleases=false -Djgitflow.localOnly=true -DlocalOnly=true -DnoReleaseMerge=false
 
 ```
