@@ -8,6 +8,7 @@ Git is a distributed version-control system for tracking changes in source code 
 * [Clean local repository](#clean-local-repository)
 * [Verify unpushed commits](#verify-unpushed-commits)
 * [Delete older commit](#delete-older-commit)
+* [jgitflow release without pushing)(#jgitflow-release-without-pushing)
 
 ### Move files to a subdirectory
 Use git commands to move files around so that it properly keeps track of their history :
@@ -85,3 +86,14 @@ git rebase -p --onto COMMIT_SHA^ COMMIT_SHA
 ```
 
 Force pushing could be required if already pushed.
+
+### jgitflow relase without pushing
+
+```
+mvn jgitflow:release-start -DpushReleases=false
+```
+
+```
+mvn jgitflow:release-finish -DpushReleases=false -DnoDeploy=true
+
+```
